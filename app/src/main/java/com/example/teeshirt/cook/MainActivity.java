@@ -1,5 +1,7 @@
 package com.example.teeshirt.cook;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,8 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -55,6 +65,32 @@ public class MainActivity extends ActionBarActivity {
      */
     public static class MainFragment extends Fragment {
 
+        private TextView mTextDetails;
+
+        private CallbackManager mcallbackManager;
+
+        private FacebookCallback<LoginResult> mCallback = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken accessToken= loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
+
+                if (profile != null){
+                    mTextDetails.setText("Welcome "+ profile.getName());
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+
+            }
+        };
+
         public MainFragment() {
         }
 
@@ -63,6 +99,7 @@ public class MainActivity extends ActionBarActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+            mcallbackManager = CallbackManager.Factory.create();
         }
 
 
@@ -71,6 +108,21 @@ public class MainActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
+        }
+
+        @Override
+        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            LoginButton loginButton = (LoginButton) view.findViewById(R.id.login_button);
+            loginButton.setReadPermissions();
+            loginButton.setFragment(this);
+            loginButton.registerCallback(mcallbackManager, mCallback);
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            mcallbackManager.onActivityResult(requestCode, resultCode, this);
         }
     }
 }
