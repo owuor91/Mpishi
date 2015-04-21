@@ -78,6 +78,7 @@ public class LoginActivity extends ActionBarActivity {
                 if (profile != null){
                     mTextDetails.setText("Welcome "+ profile.getName());
                 }
+
             }
 
             @Override
@@ -123,6 +124,14 @@ public class LoginActivity extends ActionBarActivity {
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
             mcallbackManager.onActivityResult(requestCode, resultCode, data);
+
+
+            /*Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+            if (Session.getActiveSession() != null || Session.getActiveSession().isOpened()){
+                Intent i = new Intent(MainActivity.this,Next.class);
+                startActivity(i);
+            }*/
+
         }
     }
 }
