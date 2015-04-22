@@ -8,19 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class HowItWorks1 extends ActionBarActivity {
+public class HowItWorks2 extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_it_works1);
+        setContentView(R.layout.activity_how_it_works2);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_how_it_works1, menu);
+        getMenuInflater().inflate(R.menu.menu_how_it_works2, menu);
         return true;
     }
 
@@ -40,8 +40,7 @@ public class HowItWorks1 extends ActionBarActivity {
     }
 
     public void buttonClick(View view){
-        Intent intent = new Intent(HowItWorks1.this, HowItWorks2.class);
+        Intent intent = new Intent(HowItWorks2.this, MainActivity.class);
         startActivity(intent);
-
     }
 }

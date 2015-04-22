@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.teeshirt.cook.HowItWorks2"
+    android:background="@drawable/bg_howitworks2">
+
+    <TextView
+        android:text="@string/helps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="40dp"
+        android:textAlignment="gravity"
+        android:padding="7dp"
+        android:textColor="#ff5bffb3" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/btnbelow"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:id="@+id/imgfinger"
+        android:onClick="buttonClick"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="OK GOT IT"
+        android:id="@+id/textView4"
+        android:layout_alignTop="@+id/imgfinger"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="15dp"
+        android:paddingRight="40dp"/>
+
+</RelativeLayout>

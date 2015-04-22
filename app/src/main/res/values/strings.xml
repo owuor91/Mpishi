@@ -5,4 +5,7 @@
     <string name="app_id">367822833406582</string>
     <string name="title_activity_splash">splash</string>
     <string name="title_activity_how_it_works1">HowItWorks1</string>
+    <string name="title_activity_how_it_works2">HowItWorks2</string>
+    <string name="helps">Mpishi helps you contribute and share recipes with other Mpishi users</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
